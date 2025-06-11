@@ -12,15 +12,15 @@ export class TeachersService {
     return `This action returns all teachers`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} teacher`;
   }
 
-  update(id: number, updateTeacherDto: UpdateTeacherDto) {
+  update(id: string, updateTeacherDto: UpdateTeacherDto) {
     return `This action updates a #${id} teacher`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} teacher`;
   }
 }
