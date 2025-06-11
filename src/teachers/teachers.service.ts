@@ -16,12 +16,16 @@ export class TeachersService {
     return 'This action adds a new teacher';
   }
 
-  findAll() {
+  findOne(id: string) {
     return `This action returns all teachers`;
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} teacher`;
+  async findAll() {
+    const allTeachers = await this.teacherRepository.find();
+    if (allTeachers.length === 0) {
+      return `There are no teachers registered in the database.`
+    }
+    return allTeachers;
   }
 
   update(id: string, updateTeacherDto: UpdateTeacherDto) {

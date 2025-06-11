@@ -1,0 +1,4 @@
+@defaultUrl = http://localhost:3000/teachers
+
+### This route returns all teachers
+GET {{defaultUrl}}
