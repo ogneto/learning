@@ -50,8 +50,20 @@ export class TeachersService {
     return allTeachers;
   }
 
-  update(id: string, updateTeacherDto: UpdateTeacherDto) {
-    return `This action updates a #${id} teacher`;
+  async update(id: string, updateTeacherDto: UpdateTeacherDto) {
+    const teacher = {
+      teacher_name: updateTeacherDto?.teacher_name,
+      teacher_email: updateTeacherDto?.teacher_email,
+      teacher_phoneNumber: updateTeacherDto?.teacher_phoneNumber,
+    }
+    const updatedTeacher = await this.teacherRepository.preload({
+      id,
+      ...teacher,
+    })
+    if (!updatedTeacher) {
+      return this.notFoundTeacher();
+    }
+    return await this.teacherRepository.save(updatedTeacher);
   }
 
   remove(id: string) {

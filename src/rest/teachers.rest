@@ -1,4 +1,6 @@
 @defaultUrl = http://localhost:3000/teachers/
+@defaultID = 4da55067-72f3-49d7-84f1-7253664f775a
+@wrongID = 4da55067-72f3-49d7-84f1-7253664f775b
 
 ### This route returns all teachers
 GET {{defaultUrl}}
@@ -14,4 +16,12 @@ Content-Type: application/json
     "teacher_name": "Douglas",
     "teacher_email": "douglas@iesb.com",
     "teacher_phoneNumber": "(61) 99605-9999"
+}
+
+### This route updates a teacher by their ID
+PATCH {{defaultUrl}}{{wrongID}}
+Content-Type: application/json
+
+{
+    "teacher_phoneNumber": "(61) 99999-2222"
 }
