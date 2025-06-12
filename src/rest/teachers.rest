@@ -1,4 +1,7 @@
-@defaultUrl = http://localhost:3000/teachers
+@defaultUrl = http://localhost:3000/teachers/
 
 ### This route returns all teachers
 GET {{defaultUrl}}
+
+### This route returns a teacher by their ID
+GET {{defaultUrl}}4da55067-72f3-49d7-84f1-7253664f775a

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,12 +12,22 @@ export class TeachersService {
     private readonly teacherRepository: Repository<Teacher>,
   ) {}
 
+  notFoundTeacher() {
+    throw new NotFoundException(`Teacher not found in the database`);
+  }
+
   create(createTeacherDto: CreateTeacherDto) {
     return 'This action adds a new teacher';
   }
 
-  findOne(id: string) {
-    return `This action returns all teachers`;
+  async findOne(id: string) {
+    const teacher = await this.teacherRepository.findOneBy({
+      id,
+    })
+    if (!teacher) {
+      return this.notFoundTeacher();
+    }
+    return teacher;
   }
 
   async findAll() {
