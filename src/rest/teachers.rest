@@ -25,3 +25,6 @@ Content-Type: application/json
 {
     "teacher_phoneNumber": "(61) 99999-2222"
 }
+
+### This route deletes a teacher by their ID
+DELETE {{defaultUrl}}{{defaultID}}

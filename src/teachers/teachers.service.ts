@@ -66,7 +66,13 @@ export class TeachersService {
     return await this.teacherRepository.save(updatedTeacher);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} teacher`;
+  async remove(id: string) {
+    const teacher = await this.teacherRepository.findOneBy({
+      id,
+    });
+    if (!teacher) {
+      return this.notFoundTeacher();
+    }
+    return await this.teacherRepository.remove(teacher);
   }
 }
