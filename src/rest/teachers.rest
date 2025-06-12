@@ -13,5 +13,5 @@ Content-Type: application/json
 {
     "teacher_name": "Douglas",
     "teacher_email": "douglas@iesb.com",
-    "teacher_phoneNumber": "(61) 99605-9999",
+    "teacher_phoneNumber": "(61) 99605-9999"
 }

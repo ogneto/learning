@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class TeachersService {
-  constructor (
+  constructor(
     @InjectRepository(Teacher)
     private readonly teacherRepository: Repository<Teacher>,
   ) {}
@@ -17,18 +17,25 @@ export class TeachersService {
   }
 
   async create(createTeacherDto: CreateTeacherDto) {
-    const teacher = {
-      teacher_name: createTeacherDto.teacher_name,
-      teacher_email: createTeacherDto.teacher_email,
-      teacher_phoneNumber: createTeacherDto.teacher_phoneNumber,
+    try {
+      const teacher = {
+        teacher_name: createTeacherDto.teacher_name,
+        teacher_email: createTeacherDto.teacher_email,
+        teacher_phoneNumber: createTeacherDto.teacher_phoneNumber,
+      };
+      return await this.teacherRepository.save(teacher);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException(`This email is already registered in the database.`);
+      }
+      throw error;
     }
-    return await this.teacherRepository.save(teacher);
   }
 
   async findOne(id: string) {
     const teacher = await this.teacherRepository.findOneBy({
       id,
-    })
+    });
     if (!teacher) {
       return this.notFoundTeacher();
     }
@@ -38,7 +45,7 @@ export class TeachersService {
   async findAll() {
     const allTeachers = await this.teacherRepository.find();
     if (allTeachers.length === 0) {
-      return `There are no teachers registered in the database.`
+      return `There are no teachers registered in the database.`;
     }
     return allTeachers;
   }
