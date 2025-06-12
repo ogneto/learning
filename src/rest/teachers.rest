@@ -5,3 +5,13 @@ GET {{defaultUrl}}
 
 ### This route returns a teacher by their ID
 GET {{defaultUrl}}4da55067-72f3-49d7-84f1-7253664f775a
+
+### This route creates a teacher from a request body object
+POST {{defaultUrl}}
+Content-Type: application/json
+
+{
+    "teacher_name": "Douglas",
+    "teacher_email": "douglas@iesb.com",
+    "teacher_phoneNumber": "(61) 99605-9999",
+}

@@ -16,8 +16,13 @@ export class TeachersService {
     throw new NotFoundException(`Teacher not found in the database`);
   }
 
-  create(createTeacherDto: CreateTeacherDto) {
-    return 'This action adds a new teacher';
+  async create(createTeacherDto: CreateTeacherDto) {
+    const teacher = {
+      teacher_name: createTeacherDto.teacher_name,
+      teacher_email: createTeacherDto.teacher_email,
+      teacher_phoneNumber: createTeacherDto.teacher_phoneNumber,
+    }
+    return await this.teacherRepository.save(teacher);
   }
 
   async findOne(id: string) {
