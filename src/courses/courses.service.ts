@@ -22,8 +22,15 @@ export class CoursesService {
     return 'This action adds a new course';
   }
 
-  findAll() {
-    return `This action returns all courses`;
+  async findAll() {
+    const allCourses = await this.courseRepository.find()
+    
+    if (allCourses.length === 0) {
+      return `There are no courses registered.`;
+    };
+
+    return allCourses;
+
   }
 
   findOne(id: string) {
