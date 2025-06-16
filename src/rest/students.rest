@@ -15,3 +15,12 @@ Content-Type: application/json
     "student_name": "Og Silva Neto",
     "student_email": "ogsilvanetu@gmail.com"
 }
+
+### This route updates a student by their Id
+PATCH {{defaultUrl}}...
+Content-Type: application/json
+
+{
+    "student_name": "xxx",
+    "student_email": "xxx"
+}
