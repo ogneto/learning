@@ -24,3 +24,6 @@ Content-Type: application/json
 {
     "student_name": "Og Neto"
 }
+
+### This route deletes a student by their Id
+DELETE {{defaultUrl}}eec90010-3028-4c41-872f-a38c393098a9
