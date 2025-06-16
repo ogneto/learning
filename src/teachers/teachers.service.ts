@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,7 +30,9 @@ export class TeachersService {
       return await this.teacherRepository.save(teacher);
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException(`This email is already registered in the database.`);
+        throw new ConflictException(
+          `This email is already registered in the database.`,
+        );
       }
       throw error;
     }
@@ -55,11 +61,11 @@ export class TeachersService {
       teacher_name: updateTeacherDto?.teacher_name,
       teacher_email: updateTeacherDto?.teacher_email,
       teacher_phoneNumber: updateTeacherDto?.teacher_phoneNumber,
-    }
+    };
     const updatedTeacher = await this.teacherRepository.preload({
       id,
       ...teacher,
-    })
+    });
     if (!updatedTeacher) {
       return this.notFoundTeacher();
     }
