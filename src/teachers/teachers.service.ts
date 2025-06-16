@@ -79,6 +79,10 @@ export class TeachersService {
     if (!teacher) {
       return this.notFoundTeacher();
     }
-    return await this.teacherRepository.remove(teacher);
+
+    const teacherCopy = teacher.teacher_name;
+    await this.teacherRepository.remove(teacher);
+
+    return `${teacherCopy} was deleted`;
   }
 }

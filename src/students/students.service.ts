@@ -91,6 +91,10 @@ export class StudentsService {
     if (!student) {
       return this.notFoundStudent();
     }
-    return await this.studentRepository.remove(student);
+
+    const studentCopy = student.student_name;
+    await this.studentRepository.remove(student);
+
+    return `${studentCopy} was deleted`;
   }
 }
