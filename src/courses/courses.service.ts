@@ -7,30 +7,27 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class CoursesService {
-
-  constructor (
+  constructor(
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
-  ) {};
+  ) {}
 
   notFoundCourse() {
     throw new NotFoundException(`This course doesn't exist.`);
   }
-
 
   create(createCourseDto: CreateCourseDto) {
     return 'This action adds a new course';
   }
 
   async findAll() {
-    const allCourses = await this.courseRepository.find()
-    
+    const allCourses = await this.courseRepository.find();
+
     if (allCourses.length === 0) {
       return `There are no courses registered.`;
-    };
+    }
 
     return allCourses;
-
   }
 
   findOne(id: string) {

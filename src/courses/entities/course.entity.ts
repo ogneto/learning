@@ -14,7 +14,7 @@ export class Course {
   @Column({ type: 'varchar', unique: true, length: 20 })
   course_name: string;
 
-  @Column({ type: 'varchar', length:  50 })
+  @Column({ type: 'varchar', length: 50 })
   course_description: string;
 
   @CreateDateColumn()
