@@ -1,4 +1,4 @@
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 
 export class CreateTeacherDto {
   @IsString()
@@ -15,4 +15,8 @@ export class CreateTeacherDto {
   @MaxLength(20)
   @MinLength(10)
   teacher_phoneNumber: string;
+
+  @IsUUID()
+  course_Id: string;
+  
 }

@@ -1,4 +1,5 @@
 import { Student } from 'src/students/entities/student.entity';
+import { Teacher } from 'src/teachers/entities/teacher.entity';
 import {
   Column,
   CreateDateColumn,
@@ -29,4 +30,7 @@ export class Course {
 
   @OneToMany(() => Student, (student) => student.course)
   students: Student[];
+
+  @OneToMany(() => Teacher, (teacher) => teacher.course )
+  teachers: Teacher[];
 }
