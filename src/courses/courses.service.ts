@@ -82,7 +82,17 @@ export class CoursesService {
     return await this.courseRepository.save(course);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} course`;
+  async remove(id: string) {
+    const course = await this.courseRepository.findOneBy({
+      id,
+    });
+    if (!course) {
+      return this.notFoundCourse();
+    }
+
+    const courseCopy = course;
+    await this.courseRepository.remove(course);
+
+    return `${courseCopy.course_name} was deleted.`;
   }
 }

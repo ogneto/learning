@@ -25,3 +25,6 @@ Content-Type: application/json
 {
     "course_name": "Math 4"
 }
+
+### This route deletes a course by its Id
+DELETE {{defaultUrl}}7c1b1cc9-2cd3-4e2c-9662-68a04fc6e9c6
