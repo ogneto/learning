@@ -23,7 +23,7 @@ export class StudentsService {
 
   async create(createStudentDto: CreateStudentDto) {
     try {
-      const student = await this.studentRepository.create( {
+      const student = await this.studentRepository.create({
         student_name: createStudentDto.student_name,
         student_email: createStudentDto.student_email,
       });
@@ -71,13 +71,13 @@ export class StudentsService {
     const updaetdStudent = {
       student_name: updateStudentDto?.student_name,
       student_email: updateStudentDto?.student_email,
-    }
+    };
     const student = await this.studentRepository.preload({
       id,
       ...updaetdStudent,
-    })
+    });
 
-    if(!student) {
+    if (!student) {
       return this.notFoundStudent();
     }
 
@@ -87,7 +87,7 @@ export class StudentsService {
   async remove(id: string) {
     const student = await this.studentRepository.findOneBy({
       id,
-    })
+    });
     if (!student) {
       return this.notFoundStudent();
     }
