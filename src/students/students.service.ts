@@ -17,8 +17,14 @@ export class StudentsService {
     return 'This action adds a new student';
   }
 
-  findAll() {
-    return `This action returns all students`;
+  async findAll() {
+    const allStudents = await this.studentRepository.find()
+
+    if (allStudents.length === 0) {
+      return `There are no students registered.`
+    }
+
+    return allStudents;
   }
 
   findOne(id: string) {
