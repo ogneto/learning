@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,8 +20,21 @@ export class CoursesService {
     throw new NotFoundException(`This course doesn't exist.`);
   }
 
-  create(createCourseDto: CreateCourseDto) {
-    return 'This action adds a new course';
+  async create(createCourseDto: CreateCourseDto) {
+    try {
+      const course = {
+        course_name: createCourseDto.course_name,
+        course_description: createCourseDto.course_description,
+      };
+      return await this.courseRepository.save(course);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException(
+          `${createCourseDto.course_name} is already registered in the database.`,
+        );
+      }
+      throw error;
+    }
   }
 
   async findAll() {

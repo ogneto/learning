@@ -1,8 +1,19 @@
 @defaultUrl = http://localhost:3000/courses/
 @wrongId = c49ba930-40da-4d73-8951-9115432949a4
 
+@defaultId = 40f6d411-3405-4bd7-a416-0462327363eb
+
 ### This route finds and returns all courses
 GET {{defaultUrl}}
 
 ### This route finds and returns just one course
-GET {{defaultUrl}}41dd52ef-2517-4549-882a-f196d6e5ba16
+GET {{defaultUrl}}{{defaultId}}
+
+### This route creates a new course
+POST {{defaultUrl}}
+Content-Type: application/json
+
+{
+    "course_name": "Math 3",
+    "course_description": "You'll learn Math a lot here"
+}
