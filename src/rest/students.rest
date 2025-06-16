@@ -1,1 +1,4 @@
 @defaultUrl = http://localhost:3000/students/
+
+### This route returns all students
+GET {{defaultUrl}}
