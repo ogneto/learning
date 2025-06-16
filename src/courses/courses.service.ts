@@ -30,8 +30,22 @@ export class CoursesService {
     return allCourses;
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} course`;
+  async findOne(id: string) {
+    const allCourses = await this.courseRepository.find();
+
+    if (allCourses.length === 0) {
+      return `There are no courses registered.`;
+    }
+
+    const course = await this.courseRepository.findOneBy({
+      id,
+    });
+
+    if (!course) {
+      return this.notFoundCourse();
+    }
+
+    return course;
   }
 
   update(id: string, updateCourseDto: UpdateCourseDto) {

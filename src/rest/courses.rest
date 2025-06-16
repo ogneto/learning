@@ -1,4 +1,8 @@
 @defaultUrl = http://localhost:3000/courses/
+@wrongId = c49ba930-40da-4d73-8951-9115432949a4
 
 ### This route finds and returns all courses
 GET {{defaultUrl}}
+
+### This route finds and returns just one course
+GET {{defaultUrl}}41dd52ef-2517-4549-882a-f196d6e5ba16
