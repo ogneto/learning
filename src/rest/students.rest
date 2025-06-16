@@ -1,4 +1,8 @@
 @defaultUrl = http://localhost:3000/students/
+@wrongId = 8ae9054b-2992-4447-944d-b24262ed924d
 
 ### This route returns all students
 GET {{defaultUrl}}
+
+### This route returns a student by their id
+GET {{defaultUrl}}...
