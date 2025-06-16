@@ -31,7 +31,7 @@ export class TeachersService {
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException(
-          `This email is already registered in the database.`,
+          `${createTeacherDto.teacher_email} is already registered in the database.`,
         );
       }
       throw error;
