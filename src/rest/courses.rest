@@ -17,3 +17,11 @@ Content-Type: application/json
     "course_name": "Math 3",
     "course_description": "You'll learn Math a lot here"
 }
+
+### This route updates a course by its Id
+PATCH {{defaultUrl}}{{defaultId}}
+Content-Type: application/json
+
+{
+    "course_name": "Math 4"
+}

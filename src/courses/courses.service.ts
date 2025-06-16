@@ -65,8 +65,21 @@ export class CoursesService {
     return course;
   }
 
-  update(id: string, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  async update(id: string, updateCourseDto: UpdateCourseDto) {
+    const updaetdCourse = {
+      course_name: updateCourseDto?.course_name,
+      course_description: updateCourseDto?.course_description,
+    };
+    const course = await this.courseRepository.preload({
+      id,
+      ...updaetdCourse,
+    });
+
+    if (!course) {
+      return this.notFoundCourse();
+    }
+
+    return await this.courseRepository.save(course);
   }
 
   remove(id: string) {
