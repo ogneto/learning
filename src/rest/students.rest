@@ -5,4 +5,4 @@
 GET {{defaultUrl}}
 
 ### This route returns a student by their id
-GET {{defaultUrl}}...
+GET {{defaultUrl}}{{wrongId}}

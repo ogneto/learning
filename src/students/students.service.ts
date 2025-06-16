@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,6 +12,10 @@ export class StudentsService {
   @InjectRepository(Student)
   private readonly studentRepository: Repository<Student>,
   ) {}
+
+  notFoundStudent() {
+    throw new NotFoundException(`This student doesn't exist.`);
+  }
   
   create(createStudentDto: CreateStudentDto) {
     return 'This action adds a new student';
@@ -27,8 +31,22 @@ export class StudentsService {
     return allStudents;
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} student`;
+  async findOne(id: string) {
+    const allStudents = await this.studentRepository.find()
+
+    if (allStudents.length === 0) {
+      return "There are no students registered"
+    }
+
+    const student = await this.studentRepository.findOneBy({
+      id,
+    })
+
+    if (!student) {
+      return this.notFoundStudent()
+    }
+
+    return student;
   }
 
   update(id: string, updateStudentDto: UpdateStudentDto) {
