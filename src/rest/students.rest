@@ -1,5 +1,6 @@
 @defaultUrl = http://localhost:3000/students/
 @wrongId = 8ae9054b-2992-4447-944d-b24262ed924d
+@defaultId = c49ba930-40da-4d73-8951-9115432949a4
 
 ### This route returns all students
 GET {{defaultUrl}}
@@ -17,10 +18,9 @@ Content-Type: application/json
 }
 
 ### This route updates a student by their Id
-PATCH {{defaultUrl}}...
+PATCH {{defaultUrl}}{{defaultId}}
 Content-Type: application/json
 
 {
-    "student_name": "xxx",
-    "student_email": "xxx"
+    "student_name": "Og Neto"
 }

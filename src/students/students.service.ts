@@ -67,8 +67,21 @@ export class StudentsService {
     return student;
   }
 
-  update(id: string, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
+  async update(id: string, updateStudentDto: UpdateStudentDto) {
+    const updaetdStudent = {
+      student_name: updateStudentDto?.student_name,
+      student_email: updateStudentDto?.student_email,
+    }
+    const student = await this.studentRepository.preload({
+      id,
+      ...updaetdStudent,
+    })
+
+    if(!student) {
+      return this.notFoundStudent();
+    }
+
+    return await this.studentRepository.save(student);
   }
 
   remove(id: string) {
