@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,6 +12,10 @@ export class CoursesService {
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
   ) {};
+
+  notFoundCourse() {
+    throw new NotFoundException(`This course doesn't exist.`);
+  }
 
 
   create(createCourseDto: CreateCourseDto) {
