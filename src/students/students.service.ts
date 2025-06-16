@@ -23,10 +23,11 @@ export class StudentsService {
 
   async create(createStudentDto: CreateStudentDto) {
     try {
-      const student = {
+      const student = await this.studentRepository.create( {
         student_name: createStudentDto.student_name,
         student_email: createStudentDto.student_email,
-      };
+      });
+
       return await this.studentRepository.save(student);
     } catch (error) {
       if (error.code === '23505') {

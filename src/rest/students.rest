@@ -6,3 +6,12 @@ GET {{defaultUrl}}
 
 ### This route returns a student by their id
 GET {{defaultUrl}}{{wrongId}}
+
+### This route creates a new student
+POST {{defaultUrl}}
+Content-Type: application/json
+
+{
+    "student_name": "Og Silva Neto",
+    "student_email": "ogsilvanetu@gmail.com"
+}
