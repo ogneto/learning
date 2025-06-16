@@ -51,7 +51,7 @@ export class CoursesService {
     const allCourses = await this.courseRepository.find();
 
     if (allCourses.length === 0) {
-      return `There are no courses registered.`;
+      throw new NotFoundException(`There are no courses registered.`);
     }
 
     const course = await this.courseRepository.findOneBy({

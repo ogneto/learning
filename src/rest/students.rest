@@ -14,7 +14,8 @@ Content-Type: application/json
 
 {
     "student_name": "Og Silva Neto",
-    "student_email": "ogsilvanetu@gmail.com"
+    "student_email": "ogsilva@gmail.com",
+    "course_Id": "17976356-f310-4a3a-a790-852ea0dc76c7"
 }
 
 ### This route updates a student by their Id

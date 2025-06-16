@@ -1,4 +1,10 @@
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsString,
+  IsUUID,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class CreateStudentDto {
   @IsString()
@@ -10,4 +16,7 @@ export class CreateStudentDto {
   @MaxLength(50)
   @MinLength(10)
   student_email: string;
+
+  @IsUUID()
+  course_Id: string;
 }

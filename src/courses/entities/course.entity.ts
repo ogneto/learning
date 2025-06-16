@@ -1,7 +1,11 @@
+import { Student } from 'src/students/entities/student.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,4 +26,7 @@ export class Course {
 
   @UpdateDateColumn()
   updatedAt: string;
+
+  @OneToMany(() => Student, (student) => student.course)
+  students: Student[];
 }
